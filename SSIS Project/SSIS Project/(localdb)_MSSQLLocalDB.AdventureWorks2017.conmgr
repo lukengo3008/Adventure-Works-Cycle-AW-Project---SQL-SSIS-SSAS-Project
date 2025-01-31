@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="(localdb)_MSSQLLocalDB.AdventureWorks2017"
+  DTS:DTSID="{525B98E2-BE8C-4D5D-8C0D-6B25490E1CF2}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=AdventureWorks2017;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-SSIS Project-{525B98E2-BE8C-4D5D-8C0D-6B25490E1CF2}(localdb)\MSSQLLocalDB.AdventureWorks2017;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
