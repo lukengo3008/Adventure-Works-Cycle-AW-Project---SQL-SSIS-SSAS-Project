@@ -1,0 +1,1550 @@
+{
+  "name": "SemanticModel",
+  "compatibilityLevel": 1200,
+  "model": {
+    "culture": "en-NZ",
+    "dataSources": [
+      {
+        "name": "SqlServer localdbMSSQLLocalDB GroupProject",
+        "connectionString": "Provider=SQLNCLI11;Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=GroupProject;Integrated Security=SSPI;Persist Security Info=false",
+        "impersonationMode": "impersonateAccount",
+        "account": "duyanh.ueh36@gmail.com",
+        "annotations": [
+          {
+            "name": "ConnectionEditUISource",
+            "value": "SqlServer"
+          }
+        ]
+      }
+    ],
+    "tables": [
+      {
+        "name": "Dim_Customer",
+        "columns": [
+          {
+            "name": "CustomerID",
+            "dataType": "int64",
+            "sourceColumn": "CustomerID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "PersonID",
+            "dataType": "int64",
+            "sourceColumn": "PersonID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "StoreID",
+            "dataType": "int64",
+            "sourceColumn": "StoreID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "FirstName",
+            "dataType": "string",
+            "sourceColumn": "FirstName",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "LastName",
+            "dataType": "string",
+            "sourceColumn": "LastName",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "LifeSpanYear",
+            "dataType": "int64",
+            "sourceColumn": "LifeSpanYear",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Dim_Customer",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [dbo].[Dim_Customer].* FROM [dbo].[Dim_Customer] ",
+              "dataSource": "SqlServer localdbMSSQLLocalDB GroupProject"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[Dim_Customer].* FROM [dbo].[Dim_Customer] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "Dim_Customer"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "Dim_Location",
+        "columns": [
+          {
+            "name": "AddressID",
+            "dataType": "int64",
+            "sourceColumn": "AddressID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "City",
+            "dataType": "string",
+            "sourceColumn": "City",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "StateProvinceID",
+            "dataType": "int64",
+            "sourceColumn": "StateProvinceID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "StateProvinceName",
+            "dataType": "string",
+            "sourceColumn": "StateProvinceName",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "CountryRegionCode",
+            "dataType": "string",
+            "sourceColumn": "CountryRegionCode",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "CountryRegionName",
+            "dataType": "string",
+            "sourceColumn": "CountryRegionName",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "CustomerID",
+            "dataType": "int64",
+            "sourceColumn": "CustomerID",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Dim_Location",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [dbo].[Dim_Location].* FROM [dbo].[Dim_Location] ",
+              "dataSource": "SqlServer localdbMSSQLLocalDB GroupProject"
+            }
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Location",
+            "levels": [
+              {
+                "name": "StateProvinceName",
+                "ordinal": 1,
+                "column": "StateProvinceName"
+              },
+              {
+                "name": "CountryRegionName",
+                "ordinal": 0,
+                "column": "CountryRegionName"
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[Dim_Location].* FROM [dbo].[Dim_Location] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "Dim_Location"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "Dim_OrderDetail",
+        "columns": [
+          {
+            "name": "SalesOrderDetailID",
+            "dataType": "int64",
+            "sourceColumn": "SalesOrderDetailID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "LineTotal",
+            "dataType": "double",
+            "sourceColumn": "LineTotal",
+            "sourceProviderType": "Numeric"
+          },
+          {
+            "name": "SalesOrderID",
+            "dataType": "int64",
+            "sourceColumn": "SalesOrderID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ProductID",
+            "dataType": "int64",
+            "sourceColumn": "ProductID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "OrderQty",
+            "dataType": "int64",
+            "sourceColumn": "OrderQty",
+            "sourceProviderType": "SmallInt"
+          },
+          {
+            "name": "TotalStandardCost",
+            "dataType": "decimal",
+            "sourceColumn": "TotalStandardCost",
+            "formatString": "\\$#,0.00;-\\$#,0.00;\\$#,0.00",
+            "sourceProviderType": "Currency",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\" ThousandSeparator=\"True\"><Currency LCID=\"5129\" DisplayName=\"$ English (New Zealand)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"1\" /></Format>"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Dim_OrderDetail",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [dbo].[Dim_OrderDetail].* FROM [dbo].[Dim_OrderDetail] ",
+              "dataSource": "SqlServer localdbMSSQLLocalDB GroupProject"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[Dim_OrderDetail].* FROM [dbo].[Dim_OrderDetail] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "Dim_OrderDetail"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "Dim_Product",
+        "columns": [
+          {
+            "name": "ProductID",
+            "dataType": "int64",
+            "sourceColumn": "ProductID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ProductName",
+            "dataType": "string",
+            "sourceColumn": "ProductName",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "ProductSubcategoryID",
+            "dataType": "int64",
+            "sourceColumn": "ProductSubcategoryID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ProductSubcategoryName",
+            "dataType": "string",
+            "sourceColumn": "ProductSubcategoryName",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "ProductCategoryID",
+            "dataType": "int64",
+            "sourceColumn": "ProductCategoryID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ProductCategoryName",
+            "dataType": "string",
+            "sourceColumn": "ProductCategoryName",
+            "sourceProviderType": "WChar"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Dim_Product",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [dbo].[Dim_Product].* FROM [dbo].[Dim_Product] ",
+              "dataSource": "SqlServer localdbMSSQLLocalDB GroupProject"
+            }
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Category",
+            "levels": [
+              {
+                "name": "ProductCategoryName",
+                "ordinal": 0,
+                "column": "ProductCategoryName"
+              },
+              {
+                "name": "ProductSubcategoryName",
+                "ordinal": 1,
+                "column": "ProductSubcategoryName"
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[Dim_Product].* FROM [dbo].[Dim_Product] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "Dim_Product"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "Dim_SalesOrder",
+        "columns": [
+          {
+            "name": "SalesOrderID",
+            "dataType": "int64",
+            "sourceColumn": "SalesOrderID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "OrderDate",
+            "dataType": "dateTime",
+            "sourceColumn": "OrderDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "TotalDue",
+            "dataType": "decimal",
+            "sourceColumn": "TotalDue",
+            "formatString": "\\$#,0.00;-\\$#,0.00;\\$#,0.00",
+            "sourceProviderType": "Currency",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\" ThousandSeparator=\"True\"><Currency LCID=\"5129\" DisplayName=\"$ English (New Zealand)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"1\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "CustomerID",
+            "dataType": "int64",
+            "sourceColumn": "CustomerID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "TotalQuantity",
+            "dataType": "int64",
+            "sourceColumn": "TotalQuantity",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Dim_SalesOrder",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [dbo].[Dim_SalesOrder].* FROM [dbo].[Dim_SalesOrder] ",
+              "dataSource": "SqlServer localdbMSSQLLocalDB GroupProject"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[Dim_SalesOrder].* FROM [dbo].[Dim_SalesOrder] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "Dim_SalesOrder"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "Dim_Time",
+        "dataCategory": "Time",
+        "columns": [
+          {
+            "name": "DateKey",
+            "dataType": "dateTime",
+            "sourceColumn": "DateKey",
+            "formatString": "General Date",
+            "sourceProviderType": "DBDate"
+          },
+          {
+            "name": "Date",
+            "dataType": "dateTime",
+            "isKey": true,
+            "sourceColumn": "FullDateAlternateKey",
+            "formatString": "General Date",
+            "sourceProviderType": "DBDate"
+          },
+          {
+            "name": "DayNumberOfWeek",
+            "dataType": "int64",
+            "sourceColumn": "DayNumberOfWeek",
+            "sourceProviderType": "UnsignedTinyInt"
+          },
+          {
+            "name": "EnglishDayNameOfWeek",
+            "dataType": "string",
+            "sourceColumn": "EnglishDayNameOfWeek",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "DayNumberOfMonth",
+            "dataType": "int64",
+            "sourceColumn": "DayNumberOfMonth",
+            "sourceProviderType": "UnsignedTinyInt"
+          },
+          {
+            "name": "DayNumberOfYear",
+            "dataType": "int64",
+            "sourceColumn": "DayNumberOfYear",
+            "sourceProviderType": "SmallInt"
+          },
+          {
+            "name": "WeekNumberOfYear",
+            "dataType": "int64",
+            "sourceColumn": "WeekNumberOfYear",
+            "sourceProviderType": "UnsignedTinyInt"
+          },
+          {
+            "name": "EnglishMonthName",
+            "dataType": "string",
+            "sourceColumn": "EnglishMonthName",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "MonthNumberOfYear",
+            "dataType": "int64",
+            "sourceColumn": "MonthNumberOfYear",
+            "sourceProviderType": "UnsignedTinyInt"
+          },
+          {
+            "name": "CalendarQuarter",
+            "dataType": "int64",
+            "sourceColumn": "CalendarQuarter",
+            "sourceProviderType": "UnsignedTinyInt"
+          },
+          {
+            "name": "CalendarYear",
+            "dataType": "int64",
+            "sourceColumn": "CalendarYear",
+            "sourceProviderType": "SmallInt"
+          },
+          {
+            "name": "CalendarSemester",
+            "dataType": "int64",
+            "sourceColumn": "CalendarSemester",
+            "sourceProviderType": "UnsignedTinyInt"
+          },
+          {
+            "name": "FiscalQuarter",
+            "dataType": "int64",
+            "sourceColumn": "FiscalQuarter",
+            "sourceProviderType": "UnsignedTinyInt"
+          },
+          {
+            "name": "FiscalYear",
+            "dataType": "int64",
+            "sourceColumn": "FiscalYear",
+            "sourceProviderType": "SmallInt"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Dim_Time",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [dbo].[Dim_Time].[DateKey],[dbo].[Dim_Time].[FullDateAlternateKey],[dbo].[Dim_Time].[DayNumberOfWeek],[dbo].[Dim_Time].[EnglishDayNameOfWeek],[dbo].[Dim_Time].[DayNumberOfMonth],[dbo].[Dim_Time].[DayNumberOfYear],[dbo].[Dim_Time].[WeekNumberOfYear],[dbo].[Dim_Time].[EnglishMonthName],[dbo].[Dim_Time].[MonthNumberOfYear],[dbo].[Dim_Time].[CalendarQuarter],[dbo].[Dim_Time].[CalendarYear],[dbo].[Dim_Time].[CalendarSemester],[dbo].[Dim_Time].[FiscalQuarter],[dbo].[Dim_Time].[FiscalYear] FROM [dbo].[Dim_Time] ",
+              "dataSource": "SqlServer localdbMSSQLLocalDB GroupProject"
+            },
+            "annotations": [
+              {
+                "name": "TableWidgetSerialization",
+                "value": [
+                  "<?xml version=\"1.0\" encoding=\"UTF-16\"?><Gemini xmlns=\"TableWidgetSerialization\"><AnnotationContent><![CDATA[<?xml version=\"1.0\"?>",
+                  "<TableWidgetGridSerialization xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">",
+                  "  <ColumnSuggestedType />",
+                  "  <ColumnFormat />",
+                  "  <ColumnAccuracy />",
+                  "  <ColumnCurrencySymbol />",
+                  "  <ColumnPositivePattern />",
+                  "  <ColumnNegativePattern />",
+                  "  <ColumnWidths>",
+                  "    <item>",
+                  "      <key>",
+                  "        <string>DateKey</string>",
+                  "      </key>",
+                  "      <value>",
+                  "        <int>87</int>",
+                  "      </value>",
+                  "    </item>",
+                  "    <item>",
+                  "      <key>",
+                  "        <string>FullDateAlternateKey</string>",
+                  "      </key>",
+                  "      <value>",
+                  "        <int>160</int>",
+                  "      </value>",
+                  "    </item>",
+                  "    <item>",
+                  "      <key>",
+                  "        <string>DayNumberOfWeek</string>",
+                  "      </key>",
+                  "      <value>",
+                  "        <int>158</int>",
+                  "      </value>",
+                  "    </item>",
+                  "    <item>",
+                  "      <key>",
+                  "        <string>EnglishDayNameOfWeek</string>",
+                  "      </key>",
+                  "      <value>",
+                  "        <int>186</int>",
+                  "      </value>",
+                  "    </item>",
+                  "    <item>",
+                  "      <key>",
+                  "        <string>DayNumberOfMonth</string>",
+                  "      </key>",
+                  "      <value>",
+                  "        <int>162</int>",
+                  "      </value>",
+                  "    </item>",
+                  "    <item>",
+                  "      <key>",
+                  "        <string>DayNumberOfYear</string>",
+                  "      </key>",
+                  "      <value>",
+                  "        <int>150</int>",
+                  "      </value>",
+                  "    </item>",
+                  "    <item>",
+                  "      <key>",
+                  "        <string>WeekNumberOfYear</string>",
+                  "      </key>",
+                  "      <value>",
+                  "        <int>160</int>",
+                  "      </value>",
+                  "    </item>",
+                  "    <item>",
+                  "      <key>",
+                  "        <string>EnglishMonthName</string>",
+                  "      </key>",
+                  "      <value>",
+                  "        <int>151</int>",
+                  "      </value>",
+                  "    </item>",
+                  "    <item>",
+                  "      <key>",
+                  "        <string>MonthNumberOfYear</string>",
+                  "      </key>",
+                  "      <value>",
+                  "        <int>164</int>",
+                  "      </value>",
+                  "    </item>",
+                  "    <item>",
+                  "      <key>",
+                  "        <string>CalendarQuarter</string>",
+                  "      </key>",
+                  "      <value>",
+                  "        <int>135</int>",
+                  "      </value>",
+                  "    </item>",
+                  "    <item>",
+                  "      <key>",
+                  "        <string>CalendarYear</string>",
+                  "      </key>",
+                  "      <value>",
+                  "        <int>115</int>",
+                  "      </value>",
+                  "    </item>",
+                  "    <item>",
+                  "      <key>",
+                  "        <string>CalendarSemester</string>",
+                  "      </key>",
+                  "      <value>",
+                  "        <int>145</int>",
+                  "      </value>",
+                  "    </item>",
+                  "    <item>",
+                  "      <key>",
+                  "        <string>FiscalQuarter</string>",
+                  "      </key>",
+                  "      <value>",
+                  "        <int>113</int>",
+                  "      </value>",
+                  "    </item>",
+                  "    <item>",
+                  "      <key>",
+                  "        <string>FiscalYear</string>",
+                  "      </key>",
+                  "      <value>",
+                  "        <int>93</int>",
+                  "      </value>",
+                  "    </item>",
+                  "    <item>",
+                  "      <key>",
+                  "        <string>FiscalSemester</string>",
+                  "      </key>",
+                  "      <value>",
+                  "        <int>123</int>",
+                  "      </value>",
+                  "    </item>",
+                  "  </ColumnWidths>",
+                  "  <ColumnDisplayIndex>",
+                  "    <item>",
+                  "      <key>",
+                  "        <string>DateKey</string>",
+                  "      </key>",
+                  "      <value>",
+                  "        <int>0</int>",
+                  "      </value>",
+                  "    </item>",
+                  "    <item>",
+                  "      <key>",
+                  "        <string>FullDateAlternateKey</string>",
+                  "      </key>",
+                  "      <value>",
+                  "        <int>1</int>",
+                  "      </value>",
+                  "    </item>",
+                  "    <item>",
+                  "      <key>",
+                  "        <string>DayNumberOfWeek</string>",
+                  "      </key>",
+                  "      <value>",
+                  "        <int>2</int>",
+                  "      </value>",
+                  "    </item>",
+                  "    <item>",
+                  "      <key>",
+                  "        <string>EnglishDayNameOfWeek</string>",
+                  "      </key>",
+                  "      <value>",
+                  "        <int>3</int>",
+                  "      </value>",
+                  "    </item>",
+                  "    <item>",
+                  "      <key>",
+                  "        <string>DayNumberOfMonth</string>",
+                  "      </key>",
+                  "      <value>",
+                  "        <int>4</int>",
+                  "      </value>",
+                  "    </item>",
+                  "    <item>",
+                  "      <key>",
+                  "        <string>DayNumberOfYear</string>",
+                  "      </key>",
+                  "      <value>",
+                  "        <int>5</int>",
+                  "      </value>",
+                  "    </item>",
+                  "    <item>",
+                  "      <key>",
+                  "        <string>WeekNumberOfYear</string>",
+                  "      </key>",
+                  "      <value>",
+                  "        <int>6</int>",
+                  "      </value>",
+                  "    </item>",
+                  "    <item>",
+                  "      <key>",
+                  "        <string>EnglishMonthName</string>",
+                  "      </key>",
+                  "      <value>",
+                  "        <int>7</int>",
+                  "      </value>",
+                  "    </item>",
+                  "    <item>",
+                  "      <key>",
+                  "        <string>MonthNumberOfYear</string>",
+                  "      </key>",
+                  "      <value>",
+                  "        <int>8</int>",
+                  "      </value>",
+                  "    </item>",
+                  "    <item>",
+                  "      <key>",
+                  "        <string>CalendarQuarter</string>",
+                  "      </key>",
+                  "      <value>",
+                  "        <int>9</int>",
+                  "      </value>",
+                  "    </item>",
+                  "    <item>",
+                  "      <key>",
+                  "        <string>CalendarYear</string>",
+                  "      </key>",
+                  "      <value>",
+                  "        <int>10</int>",
+                  "      </value>",
+                  "    </item>",
+                  "    <item>",
+                  "      <key>",
+                  "        <string>CalendarSemester</string>",
+                  "      </key>",
+                  "      <value>",
+                  "        <int>11</int>",
+                  "      </value>",
+                  "    </item>",
+                  "    <item>",
+                  "      <key>",
+                  "        <string>FiscalQuarter</string>",
+                  "      </key>",
+                  "      <value>",
+                  "        <int>12</int>",
+                  "      </value>",
+                  "    </item>",
+                  "    <item>",
+                  "      <key>",
+                  "        <string>FiscalYear</string>",
+                  "      </key>",
+                  "      <value>",
+                  "        <int>13</int>",
+                  "      </value>",
+                  "    </item>",
+                  "    <item>",
+                  "      <key>",
+                  "        <string>FiscalSemester</string>",
+                  "      </key>",
+                  "      <value>",
+                  "        <int>14</int>",
+                  "      </value>",
+                  "    </item>",
+                  "  </ColumnDisplayIndex>",
+                  "  <ColumnFrozen />",
+                  "  <ColumnChecked>",
+                  "    <item>",
+                  "      <key>",
+                  "        <string>FiscalSemester</string>",
+                  "      </key>",
+                  "      <value>",
+                  "        <boolean>false</boolean>",
+                  "      </value>",
+                  "    </item>",
+                  "  </ColumnChecked>",
+                  "  <ColumnFilter />",
+                  "  <SelectionFilter />",
+                  "  <FilterParameters />",
+                  "  <IsSortDescending>false</IsSortDescending>",
+                  "</TableWidgetGridSerialization>]]></AnnotationContent></Gemini>"
+                ]
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[Dim_Time].[DateKey],[dbo].[Dim_Time].[FullDateAlternateKey],[dbo].[Dim_Time].[DayNumberOfWeek],[dbo].[Dim_Time].[EnglishDayNameOfWeek],[dbo].[Dim_Time].[DayNumberOfMonth],[dbo].[Dim_Time].[DayNumberOfYear],[dbo].[Dim_Time].[WeekNumberOfYear],[dbo].[Dim_Time].[EnglishMonthName],[dbo].[Dim_Time].[MonthNumberOfYear],[dbo].[Dim_Time].[CalendarQuarter],[dbo].[Dim_Time].[CalendarYear],[dbo].[Dim_Time].[CalendarSemester],[dbo].[Dim_Time].[FiscalQuarter],[dbo].[Dim_Time].[FiscalYear] FROM [dbo].[Dim_Time] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "Dim_Time"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          },
+          {
+            "name": "TableWidgetSerialization",
+            "value": [
+              "<?xml version=\"1.0\" encoding=\"UTF-16\"?><Gemini xmlns=\"TableWidgetSerialization\"><AnnotationContent><![CDATA[<?xml version=\"1.0\"?>",
+              "<TableWidgetGridSerialization xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">",
+              "  <ColumnSuggestedType />",
+              "  <ColumnFormat />",
+              "  <ColumnAccuracy />",
+              "  <ColumnCurrencySymbol />",
+              "  <ColumnPositivePattern />",
+              "  <ColumnNegativePattern />",
+              "  <ColumnWidths>",
+              "    <item>",
+              "      <key>",
+              "        <string>DateKey</string>",
+              "      </key>",
+              "      <value>",
+              "        <int>87</int>",
+              "      </value>",
+              "    </item>",
+              "    <item>",
+              "      <key>",
+              "        <string>FullDateAlternateKey</string>",
+              "      </key>",
+              "      <value>",
+              "        <int>160</int>",
+              "      </value>",
+              "    </item>",
+              "    <item>",
+              "      <key>",
+              "        <string>DayNumberOfWeek</string>",
+              "      </key>",
+              "      <value>",
+              "        <int>158</int>",
+              "      </value>",
+              "    </item>",
+              "    <item>",
+              "      <key>",
+              "        <string>EnglishDayNameOfWeek</string>",
+              "      </key>",
+              "      <value>",
+              "        <int>186</int>",
+              "      </value>",
+              "    </item>",
+              "    <item>",
+              "      <key>",
+              "        <string>DayNumberOfMonth</string>",
+              "      </key>",
+              "      <value>",
+              "        <int>162</int>",
+              "      </value>",
+              "    </item>",
+              "    <item>",
+              "      <key>",
+              "        <string>DayNumberOfYear</string>",
+              "      </key>",
+              "      <value>",
+              "        <int>150</int>",
+              "      </value>",
+              "    </item>",
+              "    <item>",
+              "      <key>",
+              "        <string>WeekNumberOfYear</string>",
+              "      </key>",
+              "      <value>",
+              "        <int>160</int>",
+              "      </value>",
+              "    </item>",
+              "    <item>",
+              "      <key>",
+              "        <string>EnglishMonthName</string>",
+              "      </key>",
+              "      <value>",
+              "        <int>151</int>",
+              "      </value>",
+              "    </item>",
+              "    <item>",
+              "      <key>",
+              "        <string>MonthNumberOfYear</string>",
+              "      </key>",
+              "      <value>",
+              "        <int>164</int>",
+              "      </value>",
+              "    </item>",
+              "    <item>",
+              "      <key>",
+              "        <string>CalendarQuarter</string>",
+              "      </key>",
+              "      <value>",
+              "        <int>135</int>",
+              "      </value>",
+              "    </item>",
+              "    <item>",
+              "      <key>",
+              "        <string>CalendarYear</string>",
+              "      </key>",
+              "      <value>",
+              "        <int>115</int>",
+              "      </value>",
+              "    </item>",
+              "    <item>",
+              "      <key>",
+              "        <string>CalendarSemester</string>",
+              "      </key>",
+              "      <value>",
+              "        <int>145</int>",
+              "      </value>",
+              "    </item>",
+              "    <item>",
+              "      <key>",
+              "        <string>FiscalQuarter</string>",
+              "      </key>",
+              "      <value>",
+              "        <int>113</int>",
+              "      </value>",
+              "    </item>",
+              "    <item>",
+              "      <key>",
+              "        <string>FiscalYear</string>",
+              "      </key>",
+              "      <value>",
+              "        <int>93</int>",
+              "      </value>",
+              "    </item>",
+              "    <item>",
+              "      <key>",
+              "        <string>FiscalSemester</string>",
+              "      </key>",
+              "      <value>",
+              "        <int>123</int>",
+              "      </value>",
+              "    </item>",
+              "  </ColumnWidths>",
+              "  <ColumnDisplayIndex>",
+              "    <item>",
+              "      <key>",
+              "        <string>DateKey</string>",
+              "      </key>",
+              "      <value>",
+              "        <int>0</int>",
+              "      </value>",
+              "    </item>",
+              "    <item>",
+              "      <key>",
+              "        <string>FullDateAlternateKey</string>",
+              "      </key>",
+              "      <value>",
+              "        <int>1</int>",
+              "      </value>",
+              "    </item>",
+              "    <item>",
+              "      <key>",
+              "        <string>DayNumberOfWeek</string>",
+              "      </key>",
+              "      <value>",
+              "        <int>2</int>",
+              "      </value>",
+              "    </item>",
+              "    <item>",
+              "      <key>",
+              "        <string>EnglishDayNameOfWeek</string>",
+              "      </key>",
+              "      <value>",
+              "        <int>3</int>",
+              "      </value>",
+              "    </item>",
+              "    <item>",
+              "      <key>",
+              "        <string>DayNumberOfMonth</string>",
+              "      </key>",
+              "      <value>",
+              "        <int>4</int>",
+              "      </value>",
+              "    </item>",
+              "    <item>",
+              "      <key>",
+              "        <string>DayNumberOfYear</string>",
+              "      </key>",
+              "      <value>",
+              "        <int>5</int>",
+              "      </value>",
+              "    </item>",
+              "    <item>",
+              "      <key>",
+              "        <string>WeekNumberOfYear</string>",
+              "      </key>",
+              "      <value>",
+              "        <int>6</int>",
+              "      </value>",
+              "    </item>",
+              "    <item>",
+              "      <key>",
+              "        <string>EnglishMonthName</string>",
+              "      </key>",
+              "      <value>",
+              "        <int>7</int>",
+              "      </value>",
+              "    </item>",
+              "    <item>",
+              "      <key>",
+              "        <string>MonthNumberOfYear</string>",
+              "      </key>",
+              "      <value>",
+              "        <int>8</int>",
+              "      </value>",
+              "    </item>",
+              "    <item>",
+              "      <key>",
+              "        <string>CalendarQuarter</string>",
+              "      </key>",
+              "      <value>",
+              "        <int>9</int>",
+              "      </value>",
+              "    </item>",
+              "    <item>",
+              "      <key>",
+              "        <string>CalendarYear</string>",
+              "      </key>",
+              "      <value>",
+              "        <int>10</int>",
+              "      </value>",
+              "    </item>",
+              "    <item>",
+              "      <key>",
+              "        <string>CalendarSemester</string>",
+              "      </key>",
+              "      <value>",
+              "        <int>11</int>",
+              "      </value>",
+              "    </item>",
+              "    <item>",
+              "      <key>",
+              "        <string>FiscalQuarter</string>",
+              "      </key>",
+              "      <value>",
+              "        <int>12</int>",
+              "      </value>",
+              "    </item>",
+              "    <item>",
+              "      <key>",
+              "        <string>FiscalYear</string>",
+              "      </key>",
+              "      <value>",
+              "        <int>13</int>",
+              "      </value>",
+              "    </item>",
+              "    <item>",
+              "      <key>",
+              "        <string>FiscalSemester</string>",
+              "      </key>",
+              "      <value>",
+              "        <int>14</int>",
+              "      </value>",
+              "    </item>",
+              "  </ColumnDisplayIndex>",
+              "  <ColumnFrozen />",
+              "  <ColumnChecked>",
+              "    <item>",
+              "      <key>",
+              "        <string>FiscalSemester</string>",
+              "      </key>",
+              "      <value>",
+              "        <boolean>false</boolean>",
+              "      </value>",
+              "    </item>",
+              "  </ColumnChecked>",
+              "  <ColumnFilter />",
+              "  <SelectionFilter />",
+              "  <FilterParameters />",
+              "  <IsSortDescending>false</IsSortDescending>",
+              "</TableWidgetGridSerialization>]]></AnnotationContent></Gemini>"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Fact_Sales",
+        "columns": [
+          {
+            "name": "SalesOrderID",
+            "dataType": "int64",
+            "sourceColumn": "SalesOrderID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "SalesOrderDetailID",
+            "dataType": "int64",
+            "sourceColumn": "SalesOrderDetailID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ProductID",
+            "dataType": "int64",
+            "sourceColumn": "ProductID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "CustomerID",
+            "dataType": "int64",
+            "sourceColumn": "CustomerID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "PersonID",
+            "dataType": "int64",
+            "sourceColumn": "PersonID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "StoreID",
+            "dataType": "int64",
+            "sourceColumn": "StoreID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "CustomerType",
+            "dataType": "string",
+            "sourceColumn": "CustomerType",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ProductCategoryID",
+            "dataType": "int64",
+            "sourceColumn": "ProductCategoryID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ProductSubcategoryID",
+            "dataType": "int64",
+            "sourceColumn": "ProductSubcategoryID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "AddressID",
+            "dataType": "int64",
+            "sourceColumn": "AddressID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ReasonName",
+            "dataType": "string",
+            "sourceColumn": "ReasonName",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "ReasonType",
+            "dataType": "string",
+            "sourceColumn": "ReasonType",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "TotalQuantity",
+            "dataType": "int64",
+            "sourceColumn": "TotalQuantity",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "TotalDue",
+            "dataType": "decimal",
+            "sourceColumn": "TotalDue",
+            "formatString": "\\$#,0.00;-\\$#,0.00;\\$#,0.00",
+            "sourceProviderType": "Currency",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\" ThousandSeparator=\"True\"><Currency LCID=\"5129\" DisplayName=\"$ English (New Zealand)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"1\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "LineTotal",
+            "dataType": "double",
+            "sourceColumn": "LineTotal",
+            "sourceProviderType": "Numeric"
+          },
+          {
+            "name": "TotalStandardCost",
+            "dataType": "decimal",
+            "sourceColumn": "TotalStandardCost",
+            "formatString": "\\$#,0.00;-\\$#,0.00;\\$#,0.00",
+            "sourceProviderType": "Currency",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\" ThousandSeparator=\"True\"><Currency LCID=\"5129\" DisplayName=\"$ English (New Zealand)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"1\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "OrderDetailProfit",
+            "dataType": "double",
+            "sourceColumn": "OrderDetailProfit",
+            "sourceProviderType": "Numeric"
+          },
+          {
+            "name": "DateKey",
+            "dataType": "dateTime",
+            "sourceColumn": "DateKey",
+            "formatString": "General Date",
+            "sourceProviderType": "DBDate"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Fact_Sales",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [dbo].[Fact_Sales].* FROM [dbo].[Fact_Sales] ",
+              "dataSource": "SqlServer localdbMSSQLLocalDB GroupProject"
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Distinct Count of SalesOrderID",
+            "expression": "DISTINCTCOUNT([SalesOrderID])"
+          },
+          {
+            "name": "Maximum of DateKey",
+            "expression": "MAX([DateKey])",
+            "formatString": "General Date"
+          },
+          {
+            "name": "Sum of OrderDetailProfit",
+            "expression": "SUM([OrderDetailProfit])"
+          },
+          {
+            "name": "Distinct Count of CustomerID",
+            "expression": "DISTINCTCOUNT([CustomerID])"
+          },
+          {
+            "name": "Count of TotalQuantity",
+            "expression": "COUNTA([TotalQuantity])"
+          },
+          {
+            "name": "Average of TotalDue",
+            "expression": "AVERAGE([TotalDue])",
+            "formatString": "\\$#,0.00;-\\$#,0.00;\\$#,0.00",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\" ThousandSeparator=\"True\"><Currency LCID=\"5129\" DisplayName=\"$ English (New Zealand)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"1\" /></Format>"
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[Fact_Sales].* FROM [dbo].[Fact_Sales] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "Fact_Sales"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "aded246d-70f9-431b-bfc1-ea8eb7271462",
+        "fromTable": "Fact_Sales",
+        "fromColumn": "CustomerID",
+        "toTable": "Dim_Customer",
+        "toColumn": "CustomerID"
+      },
+      {
+        "name": "1476aab2-f60b-4195-a37d-f3f745b23746",
+        "fromTable": "Fact_Sales",
+        "fromColumn": "AddressID",
+        "toTable": "Dim_Location",
+        "toColumn": "AddressID"
+      },
+      {
+        "name": "5ff0cf09-221a-4eed-b9e4-d299996ae9e0",
+        "fromTable": "Fact_Sales",
+        "fromColumn": "SalesOrderDetailID",
+        "toTable": "Dim_OrderDetail",
+        "toColumn": "SalesOrderDetailID"
+      },
+      {
+        "name": "c4851ccf-b18a-41cc-854a-900eb0056c0d",
+        "fromTable": "Fact_Sales",
+        "fromColumn": "ProductID",
+        "toTable": "Dim_Product",
+        "toColumn": "ProductID"
+      },
+      {
+        "name": "5da1907e-1a6c-4b62-b1f7-939c62833c3d",
+        "fromTable": "Fact_Sales",
+        "fromColumn": "SalesOrderID",
+        "toTable": "Dim_SalesOrder",
+        "toColumn": "SalesOrderID"
+      },
+      {
+        "name": "69e295bf-729a-45c0-9805-105b99afdcbc",
+        "fromTable": "Fact_Sales",
+        "fromColumn": "DateKey",
+        "toTable": "Dim_Time",
+        "toColumn": "Date"
+      }
+    ],
+    "perspectives": [
+      {
+        "name": "Loyalty-RFM",
+        "tables": [
+          {
+            "name": "Fact_Sales",
+            "columns": [
+              {
+                "name": "CustomerID"
+              },
+              {
+                "name": "CustomerType"
+              }
+            ],
+            "measures": [
+              {
+                "name": "Distinct Count of SalesOrderID"
+              },
+              {
+                "name": "Maximum of DateKey"
+              },
+              {
+                "name": "Sum of OrderDetailProfit"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "CLV",
+        "tables": [
+          {
+            "name": "Dim_Customer",
+            "columns": [
+              {
+                "name": "CustomerID"
+              },
+              {
+                "name": "LifeSpanYear"
+              }
+            ]
+          },
+          {
+            "name": "Fact_Sales",
+            "columns": [
+              {
+                "name": "CustomerID"
+              },
+              {
+                "name": "CustomerType"
+              }
+            ],
+            "measures": [
+              {
+                "name": "Average of TotalDue"
+              },
+              {
+                "name": "Distinct Count of SalesOrderID"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Profitability",
+        "tables": [
+          {
+            "name": "Fact_Sales",
+            "columns": [
+              {
+                "name": "CustomerID"
+              },
+              {
+                "name": "CustomerType"
+              },
+              {
+                "name": "OrderDetailProfit"
+              }
+            ],
+            "measures": [
+              {
+                "name": "Distinct Count of SalesOrderID"
+              },
+              {
+                "name": "Sum of OrderDetailProfit"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Purchase Frequency",
+        "tables": [
+          {
+            "name": "Dim_Customer",
+            "columns": [
+              {
+                "name": "CustomerID"
+              },
+              {
+                "name": "LifeSpanYear"
+              }
+            ]
+          },
+          {
+            "name": "Fact_Sales",
+            "columns": [
+              {
+                "name": "CustomerID"
+              },
+              {
+                "name": "CustomerType"
+              }
+            ],
+            "measures": [
+              {
+                "name": "Distinct Count of SalesOrderID"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Location",
+        "tables": [
+          {
+            "name": "Dim_Location",
+            "columns": [
+              {
+                "name": "AddressID"
+              }
+            ],
+            "hierarchies": [
+              {
+                "name": "Location"
+              }
+            ]
+          },
+          {
+            "name": "Dim_Time",
+            "columns": [
+              {
+                "name": "CalendarYear"
+              },
+              {
+                "name": "DateKey"
+              }
+            ]
+          },
+          {
+            "name": "Fact_Sales",
+            "columns": [
+              {
+                "name": "AddressID"
+              },
+              {
+                "name": "DateKey"
+              }
+            ],
+            "measures": [
+              {
+                "name": "Distinct Count of CustomerID"
+              },
+              {
+                "name": "Distinct Count of SalesOrderID"
+              },
+              {
+                "name": "Sum of OrderDetailProfit"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Purchase Reason",
+        "tables": [
+          {
+            "name": "Fact_Sales",
+            "columns": [
+              {
+                "name": "CustomerID"
+              },
+              {
+                "name": "CustomerType"
+              },
+              {
+                "name": "OrderDetailProfit"
+              },
+              {
+                "name": "ReasonName"
+              },
+              {
+                "name": "ReasonType"
+              }
+            ],
+            "measures": [
+              {
+                "name": "Distinct Count of SalesOrderID"
+              },
+              {
+                "name": "Sum of OrderDetailProfit"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Product Preference",
+        "tables": [
+          {
+            "name": "Dim_Product",
+            "columns": [
+              {
+                "name": "ProductID"
+              }
+            ],
+            "hierarchies": [
+              {
+                "name": "Category"
+              }
+            ]
+          },
+          {
+            "name": "Fact_Sales",
+            "columns": [
+              {
+                "name": "CustomerID"
+              },
+              {
+                "name": "CustomerType"
+              },
+              {
+                "name": "ProductID"
+              }
+            ],
+            "measures": [
+              {
+                "name": "Count of TotalQuantity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "annotations": [
+      {
+        "name": "ClientCompatibilityLevel",
+        "value": "400"
+      }
+    ]
+  },
+  "id": "SemanticModel"
+}
